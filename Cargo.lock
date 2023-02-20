@@ -855,5 +855,8 @@ dependencies = [
 name = "yew-tutorial"
 version = "0.1.0"
 dependencies = [
+ "gloo-net",
+ "serde",
+ "wasm-bindgen-futures",
  "yew",
 ]
