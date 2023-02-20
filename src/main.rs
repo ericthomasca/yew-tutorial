@@ -51,11 +51,11 @@ fn video_details(VideoDetailsProps { video }: &VideoDetailsProps) -> Html {
 
 #[function_component(App)]
 fn app() -> Html {
-    let videos = use_state(|| vec![]);
+    let videos = use_state(std::vec::Vec::new);
     {
         let videos = videos.clone();
         use_effect_with_deps(move |_| {
-            let videos = videos.clone();
+            let videos = videos;
             wasm_bindgen_futures::spawn_local(async move {
                 let fetched_videos: Vec<Video> = Request::get("/tutorial/data.json")
                     .send()
