@@ -51,7 +51,7 @@ fn video_details(VideoDetailsProps { video }: &VideoDetailsProps) -> Html {
 
 #[function_component(App)]
 fn app() -> Html {
-    let videos = use_state(std::vec::Vec::new);
+    let videos = use_state(Vec::new);
     {
         let videos = videos.clone();
         use_effect_with_deps(move |_| {
@@ -60,10 +60,10 @@ fn app() -> Html {
                 let fetched_videos: Vec<Video> = Request::get("/tutorial/data.json")
                     .send()
                     .await
-                    .unwrap()
+                    .expect("Data not received")
                     .json()
                     .await
-                    .unwrap();
+                    .expect("Problem with data received");
                 videos.set(fetched_videos);
 
             });
